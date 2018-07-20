@@ -1,0 +1,47 @@
+
+{% extends "feedback/feedback_base.html" %}
+{% load humanize %}
+
+{% block pre_feedback_content %}
+<div class="col-md-4">
+	{% if request.user.is_authenticated %}
+	<div class="card card-with-shadow">
+		<div class="content">
+			<h5 class="title">Your Groups</h5>
+			<ul class="list-unstyled">
+				{# {% get_user_projects as user_projects %}#}
+				{% for member_project in get_user_projects %}
+				<li class="project li-with-bullet">
+					<a href="{% url 'projects:single' slug=member_project.project.slug %}">{{ member_project.project.name }}</a>
+				</li>
+				{% endfor %}
+
+			</ul>
+		</div>
+	</div>
+	{% endif %}
+	<div class="card card-with-shadow">
+		<div class="content">
+			<h5 class="title">All Projects</h5>
+			<ul class="list-unstyled">
+				{# {% get_other_projects as other_projects %}#}
+				{% for other_project in get_other_projects %}
+					<li class="project li-with-bullet"><a href="{% url 'projects:single' slug=other_project.slug %}">{{ other_project.name }}</a></li>
+				{% endfor %}
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block feedback_content %}
+<div class="col-md-8">
+	{% for feedback in feedback_list %}
+  {% include "feedback/_feedback.html" %}
+	{% endfor %}
+</div>
+{% endblock %}

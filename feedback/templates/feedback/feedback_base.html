@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Feedback-page css has nto been configured yet  -->
+<div class="feedback-page">
+ <div class="container">
+   <div class="row">
+     {% block pre_feedback %}{% endblock %}
+     {% block feedback_content %}{% endblock %}
+    {% block feedback_post %}{% endblock %}
+   </div>
+ </div>
+</div>
+{% endblock %}

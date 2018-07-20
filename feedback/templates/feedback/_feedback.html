@@ -1,0 +1,27 @@
+
+<div class="feedback media">
+	<h3>{{ feedback.message_html|safe }}</h3>
+	<div class="media-body">
+		<strong>{{ feedback.user.username }}</strong>
+		<h5 class="media-heading">
+			<span class="username"><a href="{% url 'feedback:for_user' username=feedback.user.username %}">@{{ feedback.user.username }}</a></span>
+			<time class="time"><a href="{% url 'feedback:single' username=feedback.user.username pk=feedback.pk %}">{{ feedback.created_at }}</a></time>
+			{% if feedback.project %}
+			<span class="project-name">in <a href="#">{{ feedback.project.name }}</a></span>
+			{% endif %}
+		</h5>
+
+		<div class="media-footer">
+			{% if user.is_authenticated and feedback.user == user and not hide_delete %}
+				<a href="{% url 'feedback:delete' pk=feedback.pk %}" title="delete" class="btn btn-simple">
+					<span class="btn btn-danger btn-large"><i class="material-icons">warning</i>  Delete</span>
+
+
+
+
+
+				</a>
+			{% endif %}
+		</div>
+	</div>
+</div>

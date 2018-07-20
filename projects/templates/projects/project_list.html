@@ -1,0 +1,47 @@
+
+{% extends "projects/project_base.html" %}
+
+{% block preproject %}
+<div class="col-md-4">
+	<div class="content">
+		{% if user.is_authenticated %}
+		<h2>
+			Welcome back to xbrief
+			<a href="{% url 'feedback:for_user' username=user.username %}">@{{user.username }}</a>
+		</h2>
+
+    {% endif %}
+			<h2>Projects</h2>
+
+			<p>Welcome to the projects page! Please select the project you would like to give feedback for</p>
+	</div>
+	{% if user.is_authenticated %}
+	<a href="{% url 'projects:create' %}" class="btn btn-md btn-fill btn-warning"><i class="material-icons">library_books</i> Create New Project!</a>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block project_content %}
+<div class="col-md-8">
+	<div class="list-project">
+		{% for project in object_list %}
+		  <a class="list-project-item" href="{% url 'projects:single' slug=project.slug %}">
+			     <h3 class="title list-project-item-heading">{{ project.name }}</h3>
+			<div class="list-project-item-text container-fluid">
+				{{ project.description_html|safe }}
+				<div class="row">
+					<div class="col-md-4">
+						<span class="badge">{{ project.members.count }} </span> member
+						<!-- {{ project.members.count }} -->
+					</div>
+					<div class="col-md-4">
+						<span class="badge">{{ project.feedback.count }} </span> feedback
+						<!-- {{ project.feedback.count }} -->
+					</div>
+				</div>
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

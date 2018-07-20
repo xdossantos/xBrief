@@ -1,0 +1,40 @@
+
+{% extends "projects/project_base.html" %}
+
+{% block preproject %}
+
+
+<h1>{{project.name}}</h1>
+<h2> Member Count: {{project.members.count}}</h2>
+
+  <div class="content">
+
+
+				{% if user in project.members.all %}
+					<a href="{% url 'projects:leave' slug=project.slug %}" class="btn btn-lg btn-fill btn-warning"><i class="material-icons">exposure_neg_1</i> Leave</a>
+				{% else %}
+					<a href="{% url 'projects:join' slug=project.slug %}" class="btn btn-lg btn-fill btn-warning"><i class="material-icons">person_add</i> Join</a>
+				{% endif %}
+
+
+
+</div>
+
+{% endblock %}
+
+
+{% block project_content %}
+
+<div class="col-md-8">
+	{% if project.feedback.count == 0 %}
+	<h2>No feedback in this project yet!</h2>
+
+	{% else %}
+
+		{% for feedback in project.feedback.all %}
+			{% include "feedback/_feedback.html" %}
+		{% endfor %}
+
+	{% endif %}
+</div>
+{% endblock %}

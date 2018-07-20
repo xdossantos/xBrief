@@ -1,0 +1,13 @@
+
+{% extends "feedback/feedback_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block feedback_content %}
+<h4>Create New Feedback</h4>
+<form method="POST" action="{% url 'feedback:create' %}" id="feedbackForm">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<input type="submit" value="Post" class="btn btn-primary btn-large">
+</form>
+{% endblock %}

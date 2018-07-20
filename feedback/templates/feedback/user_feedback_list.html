@@ -1,0 +1,17 @@
+
+{% extends "feedback/feedback_base.html" %}
+
+{% block prefeedback %}
+<div class="col-md-4">
+	<h1>@{{ feedback_user.username }}</h1>
+	<p>Post History</p>
+</div>
+{% endblock %}
+
+{% block feedback_content %}
+<div class="col-md-8">
+	{% for feedback in feedback_list %}
+		{% include "feedback/_feedback.html" %}
+	{% endfor %}
+</div>
+{% endblock %}
