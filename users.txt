@@ -9,3 +9,6 @@ First set up a virtual environment using https://www.digitalocean.com/community/
 pip install django-bootstrap3
 pip install misaka
 pip install django-braces
+
+export PATH=/home/xdode/anaconda3/bin:$PATH
+
