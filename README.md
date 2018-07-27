@@ -12,3 +12,6 @@ pip install django-bootstrap3
 pip install misaka
 pip install django-braces
 ```
+Used material dashboard Bootstrap theme from Creative Tim: 
+
+https://demos.creative-tim.com/material-dashboard/examples/dashboard.html 
